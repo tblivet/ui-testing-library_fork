@@ -97,7 +97,7 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
 
     this.pageTitle = 'E-mail •';
     this.sendTestEmailSuccessfulMessage = 'A test email has been sent to the email address you provided.';
-    this.successfulUpdateMessage = 'TRUE';
+    this.successfulUpdateMessage = 'The settings have been successfully updated.';
     this.successfulDeleteMessage = 'Successful deletion';
 
     // Selectors
@@ -340,12 +340,13 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
    */
   async resetDefaultParameters(page: Page): Promise<string> {
     // Click on smtp radio button
-    const radio = page.locator(this.sendMailParametersRadioButton);
+    await page.locator(this.sendMailParametersRadioButton).check();
+    await this.waitForHiddenSelector(page, this.smtpServerFormField);
 
-    await radio.check();
+    // Click on Save button
+    await this.clickAndWaitForLoadState(page, this.saveEmailFormButton);
 
-    // Return true if the radio button is checked
-    return await radio.isChecked() ? 'TRUE' : 'FALSE';
+    return this.getAlertSuccessBlockParagraphContent(page);
   }
 
   /**
