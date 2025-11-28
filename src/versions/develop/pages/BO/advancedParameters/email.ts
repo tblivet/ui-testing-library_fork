@@ -340,7 +340,7 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
    */
   async resetDefaultParameters(page: Page): Promise<string> {
     // Click on smtp radio button
-    await page.locator(this.sendMailParametersRadioButton).click();
+    await page.locator(this.sendMailParametersRadioButton).check();
     await this.waitForHiddenSelector(page, this.smtpServerFormField);
 
     // Click on Save button
