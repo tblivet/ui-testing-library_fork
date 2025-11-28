@@ -319,7 +319,7 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
     encryption: string = 'None',
   ): Promise<string> {
     // Click on smtp radio button
-    await page.locator(this.smtpParametersRadioButton).click();
+    await page.locator(this.smtpParametersRadioButton).check();
     await this.waitForVisibleSelector(page, this.smtpServerFormField);
     // fill the form field
     await this.setValue(page, this.smtpServerFormField, server);
