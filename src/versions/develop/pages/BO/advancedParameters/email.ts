@@ -97,7 +97,7 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
 
     this.pageTitle = 'E-mail •';
     this.sendTestEmailSuccessfulMessage = 'A test email has been sent to the email address you provided.';
-    this.successfulUpdateMessage = 'The settings have been successfully updated.';
+    this.successfulUpdateMessage = 'TRUE';
     this.successfulDeleteMessage = 'Successful deletion';
 
     // Selectors
@@ -345,7 +345,7 @@ class BOEmailPage extends BOBasePage implements BOEmailPageInterface {
     await radio.check();
 
     // Return true if the radio button is checked
-    return await radio.isChecked() ? 'true' : 'false';
+    return await radio.isChecked() ? 'TRUE' : 'FALSE';
   }
 
   /**
